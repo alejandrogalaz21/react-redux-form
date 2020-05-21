@@ -1,86 +1,72 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { reduxForm, Form } from 'redux-form'
-import { RFInput, RFComponent } from './RFInputs'
+import { RFInput, RFRadio, RFSelect } from './RFFields'
 
-//helpers
-import { isEmpty } from './../../util/helpers'
 import {
   maxLength15,
   required,
   minLength2,
-  alphaNumeric
+  alphanumeric
 } from './../../util/inputsHelpers'
 
-function FormExample({
-  handleSubmit,
-  pristine,
-  submitting,
-  initialValues,
-  reset,
-  ...props
-}) {
-  // method to use to create or update
+function FormExample({ handleSubmit, pristine, submitting, reset }) {
+  // method to create or update
   function handleClickSubmit(values) {
-    debugger
+    console.log({ values })
     if (values.edit) {
       console.log('Update values')
     } else {
       console.log('Create a new record')
       console.log({ values })
-      debugger
     }
-    //props.reset()
   }
 
   return (
-    <Form onSubmit={handleSubmit(handleClickSubmit)}>
+    <Form onSubmit={handleSubmit(handleClickSubmit)} className="form-example">
       <RFInput
-        name="textField"
+        name="name"
         type="text"
-        component="input"
-        placeholder="Username"
+        label="Nombre completo"
+        warn={alphanumeric}
         validate={[required, maxLength15, minLength2]}
-        warn={alphaNumeric}
       />
 
-      <br />
+      <RFRadio
+        name="gender"
+        label="Género"
+        options={[
+          { id: 'gender-male', label: 'Masculino', value: 'M' },
+          { id: 'gender-female', label: 'Femenino', value: 'F' }
+        ]}
+      />
 
       <RFInput
-        name="checkBox"
-        type="checkbox"
-        component="input"
-        validate={[required]}
-      />
-
-      <br />
-
-      <RFInput name="radio" type="radio" component="input" validate={[required]} />
-
-      <br />
-
-      <RFComponent
-        name="textarea"
+        name="comment"
         type="textarea"
-        component="textarea"
+        label="Comentario"
+        warn={alphanumeric}
         validate={[required, minLength2]}
-        warn={alphaNumeric}
       />
 
-      <br />
-
-      <RFComponent name="select" component="select" validate={[required]}>
-        <option></option>
-        <option value="1">Select a color...</option>
-        <option value="2">Select a color 2...</option>
-      </RFComponent>
+      <RFSelect
+        name="university"
+        label="Universidad"
+        options={[
+          { value: 'ITESM', label: 'Tecnológico de Monterrey' },
+          { value: 'UDEM', label: 'Universidad de Monterrey' },
+          { value: 'UAM', label: 'Universidad Autonoma de México' }
+        ]}
+        warn={alphanumeric}
+        validate={[required, minLength2]}
+      />
 
       <div>
         <button type="submit" disabled={submitting}>
-          Submit
+          Enviar
         </button>
         <button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
+          Reestablecer valores
         </button>
       </div>
     </Form>
@@ -90,28 +76,17 @@ function FormExample({
 const mapStateToProps = state => ({
   initialValues: {
     edit: false,
-    textField: 'this is how we do',
-
-    checkBox: false,
-    radio: false,
-    select: [
-      { id: 1, value: 'alex' },
-      { id: 2, value: 'rosario' },
-      { id: 3, value: 'nancy' }
-    ],
-    multiSelect: [
-      { id: 1, value: 'javascript' },
-      { id: 2, value: 'python' },
-      { id: 3, value: 'php' },
-      { id: 4, value: 'sql' }
-    ]
+    name: 'Rosa Mendoza Fox',
+    gender: 'F',
+    university: 'UDEM'
   }
 })
 
 const mapDispatchToProps = {}
 
-const RFName = reduxForm({
+const RFUser = reduxForm({
   form: 'formExample',
   enableReinitialize: true
 })(FormExample)
-export default connect(mapStateToProps, mapDispatchToProps)(RFName)
+
+export default connect(mapStateToProps, mapDispatchToProps)(RFUser)
