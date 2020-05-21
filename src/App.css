@@ -31,9 +31,27 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(10px)
+    transform: translateY(10px);
   }
   100% {
-    transform: translateY(0px)
+    transform: translateY(0px);
   }
+}
+
+.form-example input,
+.form-example select,
+.form-example textarea {
+  width: 100%;
+}
+
+.form-example input[type='radio'] {
+  width: auto;
+}
+
+.disable-select {
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }

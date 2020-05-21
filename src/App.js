@@ -9,10 +9,10 @@ function App() {
   return (
     <Container>
       <Row>
-        <Col sm='12' md={{ size: 6, offset: 4 }}>
-          <h1>RF Inputs :</h1>
+        <Col sm="12" md={{ size: 6, offset: 3 }}>
+          <h1 className="mb-4">Redux Form</h1>
         </Col>
-        <Col sm='12' md={{ size: 6, offset: 4 }}>
+        <Col sm="12" md={{ size: 6, offset: 3 }}>
           <FormExample />
         </Col>
       </Row>
