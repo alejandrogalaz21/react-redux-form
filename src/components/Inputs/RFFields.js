@@ -2,7 +2,7 @@ import React from 'react'
 import { Field } from 'redux-form'
 import { Radio } from './RFRadio'
 import { Input } from './RFInput'
-import { Select } from './RFSelect'
+import { Select, SelectAsync } from './RFSelect'
 
 // WRAPPERS
 export const RenderInput = Input => ({ meta, ...props }) => (
@@ -27,3 +27,4 @@ export const RFFieldWrapper = Component => props => {
 export const RFInput = props => RFFieldWrapper(Input)(props)
 export const RFRadio = props => RFFieldWrapper(Radio)(props)
 export const RFSelect = props => RFFieldWrapper(Select)(props)
+export const RFSelectAsync = props => RFFieldWrapper(SelectAsync)(props)

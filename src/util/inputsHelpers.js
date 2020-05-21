@@ -4,20 +4,14 @@ export const required = value =>
 export const maxLength = max => value =>
   value && value.length > max ? `Máximo ${max} caracteres` : undefined
 
-export const maxLength15 = maxLength(15)
-
 export const minLength = min => value =>
   value && value.length < min ? `Mínimo ${min} caracteres` : undefined
-
-export const minLength2 = minLength(2)
 
 export const number = value =>
   value && isNaN(Number(value)) ? 'Debe ser número' : undefined
 
 export const minValue = min => value =>
   value && value < min ? `Valor mínimo ${min}` : undefined
-
-export const minValue13 = minValue(13)
 
 export const email = value =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
@@ -41,3 +35,13 @@ export const phoneNumber = value =>
   value && !/^(0|[1-9][0-9]{9})$/i.test(value)
     ? 'Número de télefono inválido, deben ser 10 dígitos'
     : undefined
+
+export const capitalizeWords = str =>
+  str.replace(
+    /\w\S*/g,
+    txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+  )
+
+export const maxLength15 = maxLength(15)
+export const minLength2 = minLength(2)
+export const minValue13 = minValue(13)

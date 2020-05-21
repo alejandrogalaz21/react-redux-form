@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Radio = ({ options, input }) => {
+export const Radio = ({ options, input }) => {
   return options.map(option => (
     <div key={option.id}>
       <input
@@ -25,5 +25,3 @@ Radio.propTypes = {
     })
   )
 }
-
-export { Radio }

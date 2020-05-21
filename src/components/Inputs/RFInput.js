@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Input = ({ input, ...props }) => {
+export const Input = ({ input, ...props }) => {
   return (
     <div>
       {props.type === 'textarea'
@@ -15,5 +15,3 @@ const Input = ({ input, ...props }) => {
 Input.propTypes = {
   type: PropTypes.string.isRequired,
 }
-
-export { Input }
