@@ -23,7 +23,7 @@ export const SelectAsync = props => {
       .then(result => result.data.map(props.formattter))
       .then(setOptions)
       .catch(console.log)
-  }, [])
+  }, [props.formattter, props.url])
 
   return <Select {...props} options={options} />
 }
