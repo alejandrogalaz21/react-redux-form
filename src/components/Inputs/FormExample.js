@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { connect } from 'react-redux'
 import { reduxForm, Form } from 'redux-form'
-import { RFInput, RFRadio, RFSelect } from './RFFields'
+import { RFInput, RFRadio, RFSelect, RFSelectAsync } from './RFFields'
 
 import {
   maxLength15,
   required,
   minLength2,
-  alphanumeric
+  alphanumeric,
+  capitalizeWords
 } from './../../util/inputsHelpers'
 
 function FormExample({ handleSubmit, pristine, submitting, reset }) {
@@ -29,6 +30,7 @@ function FormExample({ handleSubmit, pristine, submitting, reset }) {
         type="text"
         label="Nombre completo"
         warn={alphanumeric}
+        normalize={capitalizeWords}
         validate={[required, maxLength15, minLength2]}
       />
 
@@ -39,6 +41,7 @@ function FormExample({ handleSubmit, pristine, submitting, reset }) {
           { id: 'gender-male', label: 'Masculino', value: 'M' },
           { id: 'gender-female', label: 'Femenino', value: 'F' }
         ]}
+        validate={[required]}
       />
 
       <RFInput
@@ -57,8 +60,15 @@ function FormExample({ handleSubmit, pristine, submitting, reset }) {
           { value: 'UDEM', label: 'Universidad de Monterrey' },
           { value: 'UAM', label: 'Universidad Autonoma de México' }
         ]}
-        warn={alphanumeric}
         validate={[required, minLength2]}
+      />
+
+      <RFSelectAsync
+        name="task"
+        label="Selecciona una tarea"
+        url="https://jsonplaceholder.typicode.com/todos/"
+        formattter={useCallback(item => ({ label: item.title, value: item.id }), [])}
+        validate={[required]}
       />
 
       <div>
@@ -76,8 +86,7 @@ function FormExample({ handleSubmit, pristine, submitting, reset }) {
 const mapStateToProps = state => ({
   initialValues: {
     edit: false,
-    name: 'Rosa Mendoza Fox',
-    gender: 'F',
+    name: 'Joseph Somerville',
     university: 'UDEM'
   }
 })
