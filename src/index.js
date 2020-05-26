@@ -6,6 +6,11 @@ import store from './app/store'
 import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker'
 
+// styles
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css'
+import 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit.min.css'
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store()}>
