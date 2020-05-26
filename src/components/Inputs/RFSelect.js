@@ -7,7 +7,10 @@ export const Select = ({ input, ...props }) => {
     <select {...input} {...props}>
       <option value=""></option>
       {props.options.map(item => (
-        <option value={item.value} selected={item.value === input.value}>
+        <option
+          key={item.value}
+          value={item.value}
+          selected={item.value === input.value}>
           {item.label}
         </option>
       ))}
